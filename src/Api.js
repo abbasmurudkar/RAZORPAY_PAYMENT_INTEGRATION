@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
-import spinner from './Ajax-loader.gif'
 import Spinner from './Spinner';
 function Api() {
   const [data, setcategories] = useState([]);
@@ -74,7 +73,6 @@ function Api() {
       {/* <Spinner/> */}
       {!loading && <Spinner/>}
       {data.map((r, id) => (
-
         <div key={id} className="cart">
           <p>{r.idCategory}</p>
           <div className='info'>
