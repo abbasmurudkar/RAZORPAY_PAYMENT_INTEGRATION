@@ -68,9 +68,6 @@ function Api() {
   return (
     <Cover>
       <h1>PAYMENT GATEWAY</h1>
-      {/* {data.loading && <Spinner/>} */}
-      {/* {loading?data:<Spinner/>} */}
-      {/* <Spinner/> */}
       {!loading && <Spinner/>}
       {data.map((r, id) => (
         <div key={id} className="cart">
