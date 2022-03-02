@@ -7,53 +7,6 @@ function Api() {
   const [loading, setloading] = useState(true)
 
   const price = 500
-  const order_id = [
-{
-  order_id: 1,
-},
-{
-  order_id: 2,
-},
-{
-  order_id: 3,
-},
-{
-  order_id: 4,
-},
-{
-  order_id: 5,
-},
-{
-  order_id: 6,
-},
-{
-  order_id: 7,
-},
-{
-  order_id: 8,
-},
-{
-  order_id: 9,
-},
-{
-  order_id: 10,
-},
-{
-  order_id: 11,
-},
-{
-  order_id: 12,
-},
-{
-  order_id: 13,
-},
-{
-  order_id: 14,
-},
-  ]
-
-    
-  
   var formatter = new Intl.NumberFormat("en-US",{
     style: "currency",
     currency:"INR"
@@ -94,9 +47,9 @@ console.log(res)
     alert("your are offlibe failed to load razorpay")
   return;
   }
-
   const options = {
     key: "rzp_test_mNj333YrVgR9NC",
+    key_secret: "cYdkhX47xesmmCeGGpKOzyrG",
     currency: "INR",
     amount:amount *100,
     name: "BROOZ MEALS",
@@ -104,11 +57,15 @@ console.log(res)
     image :`${image}`,
     handler: function (response) {
       alert(response.razorpay_payment_id)
+      alert(response.razorpay_order_id)
       alert("payment successful")
     },
     prefill:{
       name: "ABBAS MURUDKAR"
     },
+    notes: {
+      address: "Razorpay Corporate Office"
+  },
     theme: {
       color: "#3399cc",
       // backdrop_color:"#4455cc"
@@ -127,7 +84,7 @@ console.log(res)
           <div className='info'>
             <img src={r.strCategoryThumb} alt="loading" />
             <div className='vl'></div>
-            <p><h3>{r.strCategory}</h3><br/>{r.strCategoryDescription ? r.strCategoryDescription.slice(0, 350) : ""}..<br/><br/><span style={{color:"green", fontWeight:"bolder"}}>{formatter.format(price)}</span></p> 
+            <p><span>{r.strCategory}</span><br/>{r.strCategoryDescription ? r.strCategoryDescription.slice(0, 350) : ""}..<br/><br/><span style={{color:"green", fontWeight:"bolder"}}>{formatter.format(price)}</span></p> 
             <button onClick={()=> displayrazorpay(price)}>Order Now</button>
           </div>
         </div>
@@ -144,8 +101,10 @@ h1{
   text-align: center;
   font-size: 30px;
 }
-h3{
+span{
   display: inline-block;
+  font-weight: bolder;
+  font-size: 25px;
 }
 .vl{
   border-left: 2px solid grey;
@@ -163,7 +122,6 @@ p{
 .info{
   display: flex;
   justify-content: space-between;
-  /* border: 2px solid red; */
   img{
     object-fit: center cover;
     height: 230px;
@@ -172,7 +130,6 @@ p{
 }
 .cart{
   display: flex;
-  /* border: 2px solid ; */
   margin: 15px;
   box-shadow: 5px 5px 15px grey;
   border: 2px solid grey;
