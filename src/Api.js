@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components';
+import spinner from './Ajax-loader.gif'
+import Spinner from './Spinner';
 function Api() {
   const [data, setcategories] = useState([]);
   const [loading, setloading] = useState(true)
@@ -14,7 +16,7 @@ function Api() {
       let data = result.categories //SUBPART OF API
       // console.log(data)
       setcategories(data)
-      setloading(false)
+      setloading(true)
       // console.log(result) //FULLPART OF API
     })}
   useEffect(() => {
@@ -67,7 +69,12 @@ function Api() {
   return (
     <Cover>
       <h1>PAYMENT GATEWAY</h1>
+      {/* {data.loading && <Spinner/>} */}
+      {/* {loading?data:<Spinner/>} */}
+      {/* <Spinner/> */}
+      {!loading && <Spinner/>}
       {data.map((r, id) => (
+
         <div key={id} className="cart">
           <p>{r.idCategory}</p>
           <div className='info'>
@@ -85,7 +92,6 @@ function Api() {
 
 export default Api
 const Cover = styled.div`
-border:2px solid green ;
 h1{
   display: block;
   text-align: center;
